@@ -34,7 +34,7 @@ def execute_query(user_query):
         cursor.close()
         connection.close()
 
-@app.route('/query', methods=['POST'])
+@app.route("/query", methods=["POST"])
 def query_db():
     user_query = request.json.get("query")
     result = execute_query(user_query)
