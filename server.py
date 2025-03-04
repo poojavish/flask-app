@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import mysql.connector
 from flask_cors import CORS
-import os
+
 
 app = Flask(__name__)
 CORS(app)
@@ -9,10 +9,10 @@ CORS(app)
 
 # Database connection
 db_config = {
-    "host": os.environ.get("DB_HOST", "shuttle.proxy.rlwy.net"),
-    "user": os.environ.get("DB_USER", "root"),
-    "password": os.environ.get("DB_PASSWORD", "your_password"),
-    "database": os.environ.get("DB_NAME", "murder_mystery")
+    "host": "shuttle.proxy.rlwy.net",
+    "user": "root",
+    "password": "gVjsQJJfPlqvqIIgjZJcuUplTRzIhZII",
+    "database": "murder_mystery"
 }
 
 def execute_query(user_query):
@@ -41,5 +41,4 @@ def query_db():
     return jsonify(result)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Get port from environment
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
