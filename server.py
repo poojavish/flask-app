@@ -8,10 +8,10 @@ CORS(app)
 
 # Database connection
 db_config = {
-    "host": "shuttle.proxy.rlwy.net",
-    "user": "root",  # Change if needed
-    "password": "gVjsQJJfPlqvqIIgjZJcuUplTRzIhZII",  # Change if needed
-    "database": "murder_mystery"
+    "host": os.environ.get("DB_HOST", "shuttle.proxy.rlwy.net"),
+    "user": os.environ.get("DB_USER", "root"),
+    "password": os.environ.get("DB_PASSWORD", "your_password"),
+    "database": os.environ.get("DB_NAME", "murder_mystery")
 }
 
 def execute_query(user_query):
@@ -39,5 +39,8 @@ def query_db():
     result = execute_query(user_query)
     return jsonify(result)
 
+import os
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Get port from environment
+    app.run(host="0.0.0.0", port=port, debug=True)
