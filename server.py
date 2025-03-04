@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import mysql.connector
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -38,8 +39,6 @@ def query_db():
     user_query = request.json.get("query")
     result = execute_query(user_query)
     return jsonify(result)
-
-import os
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Get port from environment
